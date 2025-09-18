@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.tela_login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/img/teste_1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: brightness(0.7);
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card {
+    background-color: #c7c7c7cb;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 1px 0px #00000060;
+    width: 400px;
+    max-width: 90%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #000000;
+    font-size: 36px;
+}
+
+.label-float {
+    position: relative;
+    padding-top: 24px;
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+
+.label-float input {
+    width: 100%;
+    padding: 12px 10px;
+    display: inline-block;
+    border: 0;
+    border-bottom: 2px solid #7a7a7ac5;
+    background-color: transparent;
+    font-size: 18px;
+    transition: all .3s ease-out;
+    border-radius: 0;
+    outline: none;
+}
+
+.label-float input:focus {
+    border-bottom: 2px solid #4b4b4b;
+}
+
+.label-float label {
+    color: #000000;
+    font-size: 18px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 8px;
+    transition: all 0.3s ease-out;
+}
+
+.label-float input:focus + label,
+.label-float input:valid + label {
+    font-size: 16px;
+    margin-top: 0;
+    color: #000000;
+    font-weight: bold;
+}
+
+button {
+    background-color: transparent;
+    border: 2px solid #CCCCCC;
+    color: #000000;
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-out;
+    width: 100%;
+}
+
+button:hover {
+    background-color: rgb(54, 54, 54);
+    color: rgb(255, 255, 255);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+hr {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+    border-top: 1px solid #CCCCCC;
+}
+
+p {
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #2c2c2c;
+}
+
+a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.fa-eye, .fa-eye-slash {
+    position: absolute;
+    top: 42px;
+    right: 10px;
+    cursor: pointer;
+    color: #7a7a7ac5;
+    transition: color 0.3s ease;
+    font-size: 18px;
+}
+
+.fa-eye:hover, .fa-eye-slash:hover {
+    color: #4b4b4b;
+}
+
+@media (max-width: 500px) {
+    .card {
+        padding: 40px 20px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+}
+
+.tela_login {
+    background-image: url('../img/image_login_cadastro.svg');
+    /* resto do código */
+}

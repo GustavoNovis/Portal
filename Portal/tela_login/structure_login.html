@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../assets/css/style_login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="tela_login"></div>
+
+    <div class="container">
+        <div class="card">
+            <h1> Login </h1>
+
+            <div class="label-float">
+                <input type="text" id="usuario" placeholder="" required>
+                <label for="usuario">Usuário</label>
+            </div>
+
+            <div class="label-float">
+                <input type="password" id="senha" placeholder="" required>
+                <label for="senha">Senha</label>
+                <i class="fa fa-eye" aria-hidden="true" id="toggleSenha"></i>
+            </div>
+
+            <div class="center">
+                <button> Entrar </button>
+            </div>
+
+            <div>
+                <hr>
+            </div>
+
+            <p> Não tem uma conta? <a href="../tela_cadastro/structure_cadastro.html">Cadastre-se</a> </p>
+        </div>
+    </div>
+
+    <script>
+        // Função para alternar visibilidade da senha
+        function togglePasswordVisibility(inputId, eyeIcon) {
+            const passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Configurar após o carregamento da página
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleSenha = document.getElementById('toggleSenha');
+            
+            if (toggleSenha) {
+                toggleSenha.addEventListener('click', function() {
+                    togglePasswordVisibility('senha', this);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
