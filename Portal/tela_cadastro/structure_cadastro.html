@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    
     <div class="tela_login"></div>
 
     <div class="container">
@@ -17,32 +18,37 @@
             <div class="label-float">
                 <input type="text" id="nome" placeholder="" required>
                 <label id="labelNome" for="nome">Nome</label>
+                <span class="feedback" id="feedbackNome"></span>
             </div>
 
             <div class="label-float">
                 <input type="text" id="usuario" placeholder="" required>
                 <label id="labelUsuario" for="usuario">Usuário</label>
+                <span class="feedback" id="feedbackUsuario"></span>
             </div>
 
             <div class="label-float">
                 <input type="text" id="telefone" placeholder="" required>
                 <label id="labelTelefone" for="telefone">Telefone</label>
+                <span class="feedback" id="feedbackTelefone"></span>
             </div>
 
             <div class="label-float">
                 <input type="password" id="senha" placeholder="" required>
                 <label id="labelSenha" for="senha">Senha</label>
                 <i class="fa fa-eye" aria-hidden="true" id="toggleSenha"></i>
+                <span class="feedback" id="feedbackSenha"></span>
             </div>
 
             <div class="label-float">
                 <input type="password" id="confirmSenha" placeholder="" required>
                 <label id="labelConfirmSenha" for="confirmSenha">Confirmar Senha</label>
                 <i class="fa fa-eye" aria-hidden="true" id="toggleConfirmSenha"></i>
+                <span class="feedback" id="feedbackConfirmSenha"></span>
             </div>
 
             <div class="center">
-                <button onclick='cadastrar()'> Cadastrar </button>
+                <button onclick="cadastrar()"> Cadastrar </button>
             </div>
 
             <div class="voltar-login">
@@ -66,8 +72,9 @@
             }
         }
 
-        // Configurar após o carregamento da página
+        // Configuração específica para a página de cadastro
         document.addEventListener('DOMContentLoaded', function() {
+            // Configurar olho da senha
             const toggleSenha = document.getElementById('toggleSenha');
             const toggleConfirmSenha = document.getElementById('toggleConfirmSenha');
             
@@ -82,21 +89,243 @@
                     togglePasswordVisibility('confirmSenha', this);
                 });
             }
+            
+            // Obter elementos do DOM
+            const nome = document.getElementById('nome');
+            const labelNome = document.getElementById('labelNome');
+            const feedbackNome = document.getElementById('feedbackNome');
+            
+            const usuario = document.getElementById('usuario');
+            const labelUsuario = document.getElementById('labelUsuario');
+            const feedbackUsuario = document.getElementById('feedbackUsuario');
+            
+            const telefone = document.getElementById('telefone');
+            const labelTelefone = document.getElementById('labelTelefone');
+            const feedbackTelefone = document.getElementById('feedbackTelefone');
+            
+            const senha = document.getElementById('senha');
+            const labelSenha = document.getElementById('labelSenha');
+            const feedbackSenha = document.getElementById('feedbackSenha');
+            
+            const confirmSenha = document.getElementById('confirmSenha');
+            const labelConfirmSenha = document.getElementById('labelConfirmSenha');
+            const feedbackConfirmSenha = document.getElementById('feedbackConfirmSenha');
+            
+            // Validação em tempo real para o campo Nome
+            if (nome && labelNome && feedbackNome) {
+                nome.addEventListener('input', function() {
+                    const valor = nome.value.trim();
+                    
+                    if (valor.length === 0) {
+                        labelNome.style.color = '';
+                        feedbackNome.textContent = '';
+                    } else if (valor.length <= 2) {
+                        labelNome.style.color = 'red';
+                        feedbackNome.textContent = 'Nome muito curto (mín. 3 caracteres)';
+                        feedbackNome.style.color = 'red';
+                    } else {
+                        labelNome.style.color = 'green';
+                        feedbackNome.textContent = 'Nome válido!';
+                        feedbackNome.style.color = 'green';
+                    }
+                });
+            }
+            
+            // Validação em tempo real para o campo Usuário
+            if (usuario && labelUsuario && feedbackUsuario) {
+                usuario.addEventListener('input', function() {
+                    const valor = usuario.value.trim();
+                    
+                    if (valor.length === 0) {
+                        labelUsuario.style.color = '';
+                        feedbackUsuario.textContent = '';
+                    } else if (valor.length <= 3) {
+                        labelUsuario.style.color = 'red';
+                        feedbackUsuario.textContent = 'Usuário muito curto (mín. 4 caracteres)';
+                        feedbackUsuario.style.color = 'red';
+                    } else {
+                        labelUsuario.style.color = 'green';
+                        feedbackUsuario.textContent = 'Usuário válido!';
+                        feedbackUsuario.style.color = 'green';
+                    }
+                });
+            }
+            
+            // Validação em tempo real para o campo Telefone
+            if (telefone && labelTelefone && feedbackTelefone) {
+                telefone.addEventListener('input', function() {
+                    const valor = telefone.value.trim();
+                    // Remove caracteres não numéricos para contar apenas dígitos
+                    const apenasNumeros = valor.replace(/\D/g, '');
+                    
+                    if (valor.length === 0) {
+                        labelTelefone.style.color = '';
+                        feedbackTelefone.textContent = '';
+                    } else if (apenasNumeros.length <= 10) {
+                        labelTelefone.style.color = 'red';
+                        feedbackTelefone.textContent = 'Telefone inválido (mín. 11 dígitos)';
+                        feedbackTelefone.style.color = 'red';
+                    } else {
+                        labelTelefone.style.color = 'green';
+                        feedbackTelefone.textContent = 'Telefone válido!';
+                        feedbackTelefone.style.color = 'green';
+                    }
+                });
+            }
+            
+            // Validação em tempo real para o campo Senha
+            if (senha && labelSenha && feedbackSenha) {
+                senha.addEventListener('input', function() {
+                    const valor = senha.value;
+                    
+                    if (valor.length === 0) {
+                        labelSenha.style.color = '';
+                        feedbackSenha.textContent = '';
+                    } else if (valor.length <= 5) {
+                        labelSenha.style.color = 'red';
+                        feedbackSenha.textContent = 'Senha fraca (mín. 6 caracteres)';
+                        feedbackSenha.style.color = 'red';
+                    } else {
+                        labelSenha.style.color = 'green';
+                        feedbackSenha.textContent = 'Senha forte!';
+                        feedbackSenha.style.color = 'green';
+                    }
+                    
+                    // Atualizar também a confirmação de senha se existir
+                    if (confirmSenha && confirmSenha.value.length > 0) {
+                        if (confirmSenha.value !== senha.value) {
+                            labelConfirmSenha.style.color = 'red';
+                            feedbackConfirmSenha.textContent = 'Senhas não coincidem!';
+                            feedbackConfirmSenha.style.color = 'red';
+                        } else {
+                            labelConfirmSenha.style.color = 'green';
+                            feedbackConfirmSenha.textContent = 'Senhas coincidem!';
+                            feedbackConfirmSenha.style.color = 'green';
+                        }
+                    }
+                });
+            }
+            
+            // Validação em tempo real para o campo Confirmar Senha
+            if (confirmSenha && labelConfirmSenha && feedbackConfirmSenha) {
+                confirmSenha.addEventListener('input', function() {
+                    const valor = confirmSenha.value;
+                    
+                    if (valor.length === 0) {
+                        labelConfirmSenha.style.color = '';
+                        feedbackConfirmSenha.textContent = '';
+                    } else if (valor !== senha.value) {
+                        labelConfirmSenha.style.color = 'red';
+                        feedbackConfirmSenha.textContent = 'Senhas não coincidem!';
+                        feedbackConfirmSenha.style.color = 'red';
+                    } else {
+                        labelConfirmSenha.style.color = 'green';
+                        feedbackConfirmSenha.textContent = 'Senhas coincidem!';
+                        feedbackConfirmSenha.style.color = 'green';
+                    }
+                });
+            }
         });
 
-        // Função de cadastro
+        // Função de cadastro - EXECUTADA QUANDO O BOTÃO É CLICADO
         function cadastrar() {
-            // Verificar se as senhas coincidem
-            const senha = document.getElementById('senha').value;
-            const confirmSenha = document.getElementById('confirmSenha').value;
+            console.log('Botão de cadastro clicado!');
             
-            if (senha !== confirmSenha) {
-                alert('As senhas não coincidem!');
+            // Obter elementos
+            const nome = document.getElementById('nome');
+            const usuario = document.getElementById('usuario');
+            const telefone = document.getElementById('telefone');
+            const senha = document.getElementById('senha');
+            const confirmSenha = document.getElementById('confirmSenha');
+            
+            // Verificar se todos os campos estão preenchidos
+            if (!nome.value.trim()) {
+                alert('Por favor, preencha o campo Nome!');
+                nome.focus();
                 return false;
             }
             
-            // Aqui você pode adicionar a lógica para enviar os dados do cadastro
+            if (!usuario.value.trim()) {
+                alert('Por favor, preencha o campo Usuário!');
+                usuario.focus();
+                return false;
+            }
+            
+            if (!telefone.value.trim()) {
+                alert('Por favor, preencha o campo Telefone!');
+                telefone.focus();
+                return false;
+            }
+            
+            if (!senha.value) {
+                alert('Por favor, preencha o campo Senha!');
+                senha.focus();
+                return false;
+            }
+            
+            if (!confirmSenha.value) {
+                alert('Por favor, confirme sua senha!');
+                confirmSenha.focus();
+                return false;
+            }
+            
+            // Verificar validações específicas
+            if (nome.value.trim().length <= 2) {
+                alert('Nome precisa ter mais de 2 caracteres!');
+                nome.focus();
+                return false;
+            }
+            
+            if (usuario.value.trim().length <= 3) {
+                alert('Usuário precisa ter mais de 3 caracteres!');
+                usuario.focus();
+                return false;
+            }
+            
+            const apenasNumeros = telefone.value.replace(/\D/g, '');
+            if (apenasNumeros.length <= 10) {
+                alert('Telefone precisa ter pelo menos 11 dígitos!');
+                telefone.focus();
+                return false;
+            }
+            
+            if (senha.value.length <= 5) {
+                alert('Senha precisa ter mais de 5 caracteres!');
+                senha.focus();
+                return false;
+            }
+            
+            // Verificar se as senhas coincidem
+            if (senha.value !== confirmSenha.value) {
+                alert('As senhas não coincidem!');
+                confirmSenha.focus();
+                return false;
+            }
+            
+            // Se todas as validações passarem
             alert('Cadastro realizado com sucesso!');
+            
+            // Aqui você pode adicionar a lógica para enviar os dados do cadastro
+            // Por exemplo: enviar para um servidor, salvar em localStorage, etc.
+            
+            // Limpar formulário após cadastro bem-sucedido (opcional)
+            document.getElementById('nome').value = '';
+            document.getElementById('usuario').value = '';
+            document.getElementById('telefone').value = '';
+            document.getElementById('senha').value = '';
+            document.getElementById('confirmSenha').value = '';
+            
+            // Resetar estilos de validação
+            const labels = document.querySelectorAll('label');
+            labels.forEach(label => {
+                label.style.color = '';
+            });
+            
+            const feedbacks = document.querySelectorAll('.feedback');
+            feedbacks.forEach(feedback => {
+                feedback.textContent = '';
+            });
+            
             return true;
         }
     </script>
